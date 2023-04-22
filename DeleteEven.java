@@ -1,4 +1,4 @@
-/*
+
 
  class Node 
 {  
@@ -9,8 +9,8 @@
         data = x;  
         next = null;  
     }  
-};
-*/
+
+
 static Node deleteEven(Node head){
 //Enter your code here
     Node temp = head;
@@ -34,4 +34,5 @@ static Node deleteNode(Node headRef, Node del){
     }
     temp.next=del.next;
     return headRef;
+}
 }

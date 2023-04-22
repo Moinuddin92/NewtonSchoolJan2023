@@ -1,4 +1,4 @@
-/*
+
 class Node {
     Node next;
     int val;
@@ -7,10 +7,10 @@ class Node {
         this.val = val;
         next = null;
     }
-}
-*/
-/*
-below function is used to insert nodes in the linked list
+
+
+
+//below function is used to insert nodes in the linked list
 public static Node insert(Node head, int val) {
         if(head == null) {
             return new Node(val);
@@ -22,7 +22,7 @@ public static Node insert(Node head, int val) {
         }
     }
 
-*/
+
 public static Node Merge (Node head1, Node head2){
 //Enter your code here
     if(head1 == null){
@@ -57,4 +57,5 @@ public static Node Merge (Node head1, Node head2){
     }
     cur.next = (head1 == null) ? head2 : head1;
     return start;
+}
 }

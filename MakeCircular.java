@@ -1,4 +1,4 @@
-/*
+
 class Node {
     Node next;
     int val;
@@ -7,8 +7,8 @@ class Node {
         this.val = val;
         next = null;
     }
-}
-*/
+
+
 
 public static Node MakeCircular(Node head) {
 //enter your code here
@@ -18,4 +18,5 @@ public static Node MakeCircular(Node head) {
     }
     temp.next = head;
     return head;
+}
 }
