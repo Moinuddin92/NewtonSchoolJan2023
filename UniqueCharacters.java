@@ -26,5 +26,6 @@ class UniqueCharacters {
         int n = sc.nextInt();
         String s = sc.next();
         uniqueCharacters(s,n);
+        sc.close();
     }
 }
