@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form Car</title>
+</head>
+
+<body>
+    <form method="post">
+        <label for="name">1. Name*</label>
+        <input id="name" type="text" required><br />
+        <label for="email">2. Email*</label>
+        <input id="email" type="email" required><br />
+        <label for="gender">3. Gender*</label>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female">Female</label><br>
+        <label for="cars">4. Car Brands*</label>
+        <select id="cars" required>
+            <option value="BMW">BMW</option>
+            <option value="Audi">Audi</option>
+            <option value="Mercedez">Mercedez</option>
+        </select><br>
+        <label for="age">5. Age*</label>
+        <input type="number" id="age" min="1" max="95" required><br>
+        <label for="dob">6. DOB*</label>
+        <input type="date" id="dob" required><br>
+        <label for="password">7. Password*</label>
+        <input type="password" id="password" required>
+        <button id="submit" type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
