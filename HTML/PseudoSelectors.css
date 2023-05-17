@@ -1,0 +1,16 @@
+/* css code goes here */
+p{
+    font-size: 18px;
+}
+section p:first-child{
+    background-color: rgb(255, 255, 0);
+}
+section ul:last-child{
+    background-color: rgb(119, 141, 240);
+}
+li:nth-child(2){
+    font-weight: bold;
+}
+li:last-child{
+    text-decoration: underline;
+}

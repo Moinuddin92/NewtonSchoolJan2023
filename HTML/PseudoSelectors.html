@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Selectors</title>
+    <style>
+        /* css code goes here */
+        p {
+            font-size: 18px;
+        }
+
+        section p:first-child {
+            background-color: rgb(255, 255, 0);
+        }
+
+        section ul:last-child {
+            background-color: rgb(119, 141, 240);
+        }
+
+        li:nth-child(2) {
+            font-weight: bold;
+        }
+
+        li:last-child {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ul>
+    </section>
+    <section>
+        <p>Paragraph 3</p>
+        <p>Paragraph 4</p>
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ul>
+    </section>
+
+</body>
+
+</html>
