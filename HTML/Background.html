@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <style>
+        .main {
+            background-image: url('http://t3.gstatic.com/images?q=tbn:ANd9GcQOkctUdtbKKCpJOwSZ0-wQGW9I2JfM7RYmJ5pv3RqyzH65mQQt');
+            height: 100vh;
+            width: 200px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <video autoplay muted loop id="myVideo">
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                type="video/mp4">
+        </video>
+        <div class="main">
+
+        </div>
+        <div class="main2">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
