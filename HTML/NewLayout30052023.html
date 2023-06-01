@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent{
+            display: grid;
+            grid-template-rows: auto auto 1fr auto auto;
+            height: 100vh;
+            background-color: chocolate;
+            gap: 4px;
+            border: 1px solid black;
+        }
+        .parent > div {
+            border: 1px solid black;
+            text-align: center;
+            font-weight: 300;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+    <div id="head"><h1>Header</h1></div>
+    <div id="title"><h3>Title</h3></div>
+    <div id="content">Content</div>
+    <div id="summary"><h5>Summary</h5></div>
+    <div id="footer"><h6>Footer</h6></div>
+</div>
+
+</body>
+</html>
