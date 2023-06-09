@@ -1,0 +1,132 @@
+body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  
+  .hero {
+    height: 100vh;
+    background-image: url('https://likeable-polka-af3.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F08d7dba3-5b48-443c-9dfc-c6b231929ce0%2FUntitled.png?id=889a6236-af8c-47e5-a4a8-ca08e3fd9b20&table=block&spaceId=fb3f4054-1e06-4b3d-8d56-606936407ce7&width=2000&userId=&cache=v2');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero-content h2 {
+    font-weight: 400;
+  }
+  
+  .black-box {
+    margin-top: 1rem;
+    background-color: #000;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  .black-box h3 {
+    font-size: 4rem;
+    font-weight: 400;
+  }
+  
+  .black-box span  {
+    font-size: 5rem;
+    color: #fff;
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 50px auto;
+  }
+  
+  .grid-item {
+    display: flex;
+    margin: 0 3rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    max-width: 340px;
+    height: 420px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .bottom-section {
+    display: flex;
+    justify-content: center;
+    /* background-color: #a6ff007e; */
+    padding: 50px;
+    gap: 10rem;
+    color: #ffffff;
+  }
+  .bottom-section h1{
+    font-size: 2rem;
+    font-weight: 100;
+  }
+  .bottom-section p{
+    font-size: 0.rem;
+    font-weight: 100;
+  }
+  .contact {
+    background-color: #3f8014;
+    padding: 2rem 5rem 3rem 1rem;
+  }
+  .about{
+    background-color: #a13131;
+    padding: 2rem 5rem 3rem 1rem;
+  }
+  
+  
+  @media (max-width: 786px) {
+    .hero {
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-size: 100% 180%;
+    }
+    .black-box h3 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    
+    .black-box span  {
+      font-size: 1.2rem;
+    }
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3rem;
+      margin: 50px auto;
+    }
+  
+    .bottom-section {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      /* background-color: #a6ff007e; */
+      gap: 0rem;
+      color: #ffffff;
+      padding: 0;
+    }
+  }
