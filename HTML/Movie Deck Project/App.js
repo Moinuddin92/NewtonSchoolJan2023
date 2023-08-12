@@ -1,18 +1,29 @@
 let pageNumber;
 let totalPages = 0;
 let currentState = "desc";
+let currentStateDate = "primary_release_date.desc"
+let currentTab = "all";
 
 const movieListSection = document.querySelector("#movie-list");
 const nextBtn = document.querySelector("#next");
 const backBtn = document.querySelector("#prev");
 const pageNumberContainer = document.querySelector("#page-no");
 const ratingToggle = document.querySelector("#rating-toggle");
+const searchInput = document.querySelector("#search-bar-input");
+const searchBtn = document.querySelector("#search-bar-button");
+const sortByDate = document.querySelector("#sort-by-date");
+const allMoviesTab = document.querySelector("#allMoviesTab");
+const favoriteTab = document.querySelector("#favoritesTab");
 
 const SORT_ASC_TEXT = "Sort by rating (most to least)";
 const SORT_DESC_TEXT = "Sort by rating (least to most)";
+const SORT_ASC_DATE_TEXT = "Sort by date (latest to oldest)";
+const SORT_DESC_DATE_TEXT = "Sort by date (oldest to latest)";
 
 const SORT_ASC = "popularity.asc";
 const SORT_DESC = "popularity.desc";
+const SORT_DATE_ASC = "primary_release_date.asc";
+const SORT_DATE_DESC = "primary_release_date.desc";
 
 function addNavigationButtons() {
   nextBtn.addEventListener("click", () => {
@@ -38,6 +49,13 @@ function addPopularityButton() {
     e.target.innerText =
       currentState === "desc" ? SORT_DESC_TEXT : SORT_ASC_TEXT;
   });
+  sortByDate.addEventListener("click",(e)=>{
+    currentStateDate = currentStateDate === SORT_DATE_DESC ? SORT_DATE_ASC : SORT_DATE_DESC;
+    pageNumber = 1;
+    showMovies(pageNumber, currentStateDate);
+    e.target.innerText = currentStateDate === SORT_DATE_DESC ? SORT_ASC_DATE_TEXT : SORT_DESC_DATE_TEXT;
+
+  })
 }
 
 async function showMovies(pageNumber = 1, sort_by = "desc") {
