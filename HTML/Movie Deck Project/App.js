@@ -3,6 +3,7 @@ let totalPages = 0;
 let currentState = "desc";
 let currentStateDate = "primary_release_date.desc"
 let currentTab = "all";
+let searchMode = false;
 
 const movieListSection = document.querySelector("#movie-list");
 const nextBtn = document.querySelector("#next");
@@ -20,8 +21,8 @@ const SORT_DESC_TEXT = "Sort by rating (least to most)";
 const SORT_ASC_DATE_TEXT = "Sort by date (latest to oldest)";
 const SORT_DESC_DATE_TEXT = "Sort by date (oldest to latest)";
 
-const SORT_ASC = "popularity.asc";
-const SORT_DESC = "popularity.desc";
+let SORT_ASC = "popularity.asc";
+let SORT_DESC = "popularity.desc";
 const SORT_DATE_ASC = "primary_release_date.asc";
 const SORT_DATE_DESC = "primary_release_date.desc";
 
@@ -45,15 +46,19 @@ function addPopularityButton() {
   ratingToggle.addEventListener("click", (e) => {
     currentState = currentState === "desc" ? "asc" : "desc";
     pageNumber = 1;
+    SORT_ASC = "popularity.asc";
+    SORT_DESC = "popularity.desc";
     showMovies(pageNumber, currentState);
     e.target.innerText =
       currentState === "desc" ? SORT_DESC_TEXT : SORT_ASC_TEXT;
   });
   sortByDate.addEventListener("click",(e)=>{
-    currentStateDate = currentStateDate === SORT_DATE_DESC ? SORT_DATE_ASC : SORT_DATE_DESC;
+    currentStateDate = currentStateDate === "desc" ? "asc" : "desc";
     pageNumber = 1;
+    SORT_ASC = "primary_release_date.asc";
+    SORT_DESC = "primary_release_date.desc";
     showMovies(pageNumber, currentStateDate);
-    e.target.innerText = currentStateDate === SORT_DATE_DESC ? SORT_ASC_DATE_TEXT : SORT_DESC_DATE_TEXT;
+    e.target.innerText = currentStateDate === "desc" ? SORT_DESC_DATE_TEXT : SORT_ASC_DATE_TEXT;
 
   })
 }
@@ -69,13 +74,17 @@ async function showMovies(pageNumber = 1, sort_by = "desc") {
     },
   };
   let response;
-
-  response = await fetch(
+  if(!searchMode){
+    response = await fetch(
     `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${pageNumber}&sort_by=${
       sort_by === "asc" ? SORT_ASC : SORT_DESC
     }`,
     options
   );
+  }
+  else{
+    response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.value.trim().toLowerCase()}&include_adult=false&language=en-US&page=${pageNumber}`, options);
+  }
 
   const json = await response.json();
   totalPages = json.total_pages;
@@ -112,9 +121,35 @@ async function showMovies(pageNumber = 1, sort_by = "desc") {
     movieListSection.appendChild(movieElement);
     pageNumberContainer.innerText = "Current Page: " + pageNumber;
   }
-
+  if(pageNumber === 1){
+    backBtn.setAttribute("disabled",true);
+  }
+  else if(pageNumber === 3){
+    nextBtn.setAttribute("disabled",true);
+  }
+  else if(pageNumber > 1 && pageNumber <= 3){
+    backBtn.removeAttribute("disabled");
+    nextBtn.removeAttribute("disabled");
+  }
   //   movieList
 }
+
+function addSearchButtonFunctionality(){
+  searchMode = true;
+  currentState = currentState === "desc" ? "asc" : "desc";
+    pageNumber = 1;
+    SORT_ASC = "popularity.asc";
+    SORT_DESC = "popularity.desc";
+  showMovies(pageNumber,currentState)
+}
+
+searchBtn.addEventListener("click",()=>{
+  addSearchButtonFunctionality();
+  if(searchInput.value === ""){
+  searchMode = false;
+  pageNumber = 1;
+  }
+})
 
 async function init() {
   pageNumber = 1;
