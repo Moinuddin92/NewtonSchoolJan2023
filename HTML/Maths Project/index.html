@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/eb339bb978.js" crossorigin="anonymous"></script>
+    <script src="App.js" defer></script>
+</head>
+
+<body>
+    <div class="upper-container">
+        <h1> Math Partner</h1>
+        <!-- <input type="button" id="historyBtn" value="History" onclick="historyButton()"> -->
+        <input type="button" id="savedBtn" value="SAVED SOLUTIONS" onclick="historyButton()">
+    </div>
+
+    <div class="middle-container">
+        <div class="box1">
+            <label for="problemBar">
+                <h2>Problem</h2>
+            </label>
+            <input type="text" id="problemBar" placeholder="TYPE HERE......">
+        </div>
+
+        <div class="box2">
+            <label for="categoryBar">
+                <h2>select Category</h2>
+            </label>
+            <select name="categoryBar" id="categoryBar">
+                <option value="simplify">Simplify</option>
+                <option value="factor">Factor</option>
+                <option value="derive">Derive</option>
+                <option value="integrate">Integrate</option>
+                <option value="zeroes">Find 0's</option>
+                <option value="tangent">Find Tangent</option>
+                <option value="area">Area Under Curve</option>
+                <option value="cos">Cosine</option>
+                <option value="sin">Sine</option>
+                <option value="tan">Tangent</option>
+                <option value="arccos">Inverse Cosine</option>
+                <option value="arcsin">Inverse Sine</option>
+                <option value="arctan">Inverse Tangent</option>
+                <option value="abs">Absolute Value</option>
+                <option value="log">Logarithm</option>
+            </select>
+        </div>
+
+        <div class="box3">
+            <button type="submit" id="searchBtn" onclick="SearchButton()"><i
+                    class="fa-solid fa-magnifying-glass fa-3x"></i></button>
+        </div>
+
+    </div>
+
+    <div class="resultCon">
+
+    </div>
+
+    <div class="historycon">
+
+    </div>
+</body>
+
+</html>
