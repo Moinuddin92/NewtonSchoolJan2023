@@ -1,114 +1,153 @@
-let historyCont = document.querySelector('.historycon');
-let resultCon = document.querySelector(".resultCon") 
-function SavedButton(){
-    console.log("working save btn")
-    var wet =  document.querySelector(".inputBox1").innerHTML;
-    var set =  document.querySelector(".inputBox2").innerHTML;
+let   inputArea = document.getElementById("problemBar");
+const operation = document.getElementById("categoryBar");
+const searchBtn = document.getElementById("searchBtn");
+const savedSol = document.getElementById("savedBtn");
+const main = document.querySelector(".main");
+const solContainer = document.querySelector(".solContainer");
+const problemBtn = document.getElementById("problemBtn");
+const cardContainer = document.createElement("div");
+const form = document.getElementById("myForm");
 
-    localStorage.setItem(wet,set);
-    console.log(localStorage.getItem(set));
-    set++;
+
+problemBtn.addEventListener("click", () => {
+  solContainer.classList.add("hidden");
+  // main.classList.remove("hidden");
+  savedSol.removeAttribute("disabled");
+});
+
+inputArea.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    console.log(e);
+    e.preventDefault();
+    encodeInput();
+  }
+});
+
+searchBtn.addEventListener("click", (e) => {
+  console.log(e);
+  e.preventDefault()
+  encodeInput();
+});
+
+function encodeInput() {
+  if (inputArea.value === "") {
+    console.log("empty string");
+  } else {
+  
+    let expression = encodeURIComponent(inputArea.value);
+    console.log(expression);
+    getData(expression, operation.value);
+
+
+  }
 }
 
-var hcount = 0 
-function historyButton(){
-
-    console.log("working history btn")
-    hcount++;
-    if(hcount%2==1){
-        historyCont.style.display = "block";
-        var data = historyCont;
-
-        for (p in localStorage) {
-            var ans = localStorage.getItem(p);
-            if (ans != null) {
-                // console.log(ans);
-                // var h3 = document.createElement("h3");
-                // h3.setAttribute('class', 'remove')
-
-                // h3.innerHTML = `${p} => Result = ${ans}`;
-                // console.log(h3);
-                // data.appendChild(h3);
-                let divCont = document.createElement("div");
-                divCont.classList.add("container-input");
-                let divProbStat = document.createElement("div");
-                divProbStat.classList.add("inputBox1");
-                divProbStat.innerHTML = p;
-                let divSolution = document.createElement("div");
-                divSolution.classList.add("inputBox2");
-                divSolution.innerHTML = ans;
-                let delButton = document.createElement("button");
-                delButton.type = "reset";
-                delButton.id = "deleteBtn";
-                delButton.onclick = delBtn();
-                let iDelBtn = document.createElement("i");
-                iDelBtn.classList.add("fa-solid","fa-trash-can","fa-3x");
-                delButton.appendChild(iDelBtn);
-                divCont.appendChild(divProbStat);
-                divCont.appendChild(divSolution);
-                divCont.appendChild(delButton);
-                data.appendChild(divCont);
-            }
-        }
-    }else{
-        historyCont.style.display = "none";
-        var rem = document.querySelectorAll('.remove');
-        console.log(rem);
-        for (var i = 0; i < rem.length; i++) {
-            rem[i].remove();
-        }
-    }
+async function getData(exp, op) {
+  const resp = await fetch(`https://newton.vercel.app/api/v2/${op}/${exp}`);
+  const data = await resp.json();
+  console.log(data);
+  //const main = document.querySelector(".main");
+ // main.innerHTML 
+  const htmlCOntent = `
+    <div class="main-three">
+      <div class="problem">
+        <p><span>${op}</span> : ${data.expression}</p>
+      </div>  
+      <div class="solution">
+        <p>${data.result}</p>
+      </div>
+      <div class="delete-btn">
+        <button id="deleteBtn"><i class="fa-solid fa-trash-can fa-3x"></i></button>
+      </div> 
+  `;
+  
+  //console.log(main_three);
+  // main_three.innerHTML
+  main.innerHTML += htmlCOntent;
+  saveData(data);
+  let deleteBtn = document.getElementById("deleteBtn");
+  DeleteResultWindow();
 }
 
-function SearchButton(){
-    event.preventDefault();
+function saveData(data) {
+  const localData = window.localStorage.getItem("localData");
 
-    console.log("working search btn")
-   var problem = document.getElementById('problemBar').value;
-   var category = document.getElementById('categoryBar').value;
-   let encodedUrl = encodeURIComponent(problem)
-   let pro = fetch(`https://newton.vercel.app/api/v2/${category}/${encodedUrl}`)
-   console.log(pro)
-   pro.then((reponse) => {
-    console.log(reponse.status)
-    console.log(reponse.ok)
-    return reponse.json()
-   }).then((value) => {
-    console.log(value);
-    var resultFetched =  value.result;
-    resultCon.style.display = "block";
-    let divCont = document.createElement("div");
-                divCont.classList.add("container-input");
-                let divProbStat = document.createElement("div");
-                divProbStat.classList.add("inputBox1");
-                divProbStat.innerHTML = category+" :"+problem;
-                let divSolution = document.createElement("div");
-                divSolution.classList.add("inputBox2");
-                divSolution.innerHTML = resultFetched;
-                let delButton = document.createElement("button");
-                delButton.type = "reset";
-                delButton.id = "deleteBtn";
-                delButton.onclick = delBtn();
-                let iDelBtn = document.createElement("i");
-                iDelBtn.classList.add("fa-solid","fa-trash-can","fa-3x");
-                delButton.appendChild(iDelBtn);
-                divCont.appendChild(divProbStat);
-                divCont.appendChild(divSolution);
-                divCont.appendChild(delButton);
-    resultCon.appendChild(divCont); 
-   })
-   
-
-   document.querySelector(".inputBox1").innerHTML = category+" :"+problem;
-   var set =  document.querySelector(".inputBox1").value;
-   var wet =  document.querySelector(".inputBox2").innerHTML;
-   localStorage.setItem(set,wet);
+  if (!localData) {
+    console.log(data);
+    let arr = [];
+    arr.push(data);
+    window.localStorage.setItem("localData", JSON.stringify(arr));
+  } else {
+    let array = JSON.parse(localStorage.getItem("localData"));
+    array.push(data);
+    localStorage.setItem("localData", JSON.stringify(array));
+  }
 }
 
+function DeleteResultWindow() {
+  deleteBtn.addEventListener("click", function () {
+    console.log("delete result window");
+    const main_three = document.querySelector(".main-three");
+    if (main_three) {
+      main.removeChild(main_three);
+    } 
+  });
+}
 
-function delBtn(ele){
-    console.log("working delete btn")
-    document.querySelector(".inputBox1").innerHTML = "";
-    document.querySelector(".inputBox2").innerHTML = "";
-    localStorage.removeItem(ele);
-}   
+// document.addEventListener("click", function (event) {
+//   if (event.target.matches("#savedSol")) {
+//     savedSolution();
+//   }
+// });
+
+savedSol.addEventListener("click",(e)=>{
+  e.preventDefault();
+  savedSolution();
+  savedSol.setAttribute("disabled",true);
+})
+
+document.addEventListener("click", function (event) {
+  if (event.target.matches("#deleteCard")) {
+    cardDelete(event.target.getAttribute("value"));
+  }
+});
+
+const deleteCard = document.getElementById("deleteCard");
+
+function cardDelete(event) {
+  console.log(event);
+  let array = JSON.parse(localStorage.getItem("localData"));
+  array.splice(event, 1);
+  window.localStorage.setItem("localData", JSON.stringify(array));
+
+  savedSolution();
+}
+
+function savedSolution() {
+  console.log("button clicked");
+  // main.classList.add("hidden");
+  solContainer.classList.remove("hidden");
+  cardContainer.innerHTML = "";
+  cardContainer.classList.add("card-container");
+
+  const storaaa = JSON.parse(window.localStorage.getItem("localData"));
+  console.log(storaaa);
+  if (storaaa == null || storaaa == "undefined") {
+    console.log("No Data To Render");
+    return;
+  } else {
+    storaaa.forEach((e, idx) => {
+      const cardHtml = `
+        <div class="card">
+          <p class="para p1">${e.operation}</p>
+          <textarea id="textArea" disabled>${e.expression}</textarea>
+          <p class="para p2">${e.result}</p>
+          <button id="deleteCard" value=${idx}><i class="fa-solid fa-trash-can fa-1x"></i></button>
+        </div>
+      `;
+      cardContainer.innerHTML += cardHtml;
+    });
+
+    solContainer.appendChild(cardContainer);
+  }
+}

@@ -13,55 +13,52 @@
 </head>
 
 <body>
-    <div class="upper-container">
-        <h1> Math Partner</h1>
-        <!-- <input type="button" id="historyBtn" value="History" onclick="historyButton()"> -->
-        <input type="button" id="savedBtn" value="SAVED SOLUTIONS" onclick="historyButton()">
-    </div>
-
-    <div class="middle-container">
-        <div class="box1">
-            <label for="problemBar">
-                <h2>Problem</h2>
-            </label>
-            <input type="text" id="problemBar" placeholder="TYPE HERE......">
+    <div class="main">
+        <div class="main-one">
+            <h1> Math Partner</h1>
+            <button id="savedBtn">SAVED SOLUTIONS</button>
         </div>
 
-        <div class="box2">
-            <label for="categoryBar">
-                <h2>select Category</h2>
-            </label>
-            <select name="categoryBar" id="categoryBar">
-                <option value="simplify">Simplify</option>
-                <option value="factor">Factor</option>
-                <option value="derive">Derive</option>
-                <option value="integrate">Integrate</option>
-                <option value="zeroes">Find 0's</option>
-                <option value="tangent">Find Tangent</option>
-                <option value="area">Area Under Curve</option>
-                <option value="cos">Cosine</option>
-                <option value="sin">Sine</option>
-                <option value="tan">Tangent</option>
-                <option value="arccos">Inverse Cosine</option>
-                <option value="arcsin">Inverse Sine</option>
-                <option value="arctan">Inverse Tangent</option>
-                <option value="abs">Absolute Value</option>
-                <option value="log">Logarithm</option>
-            </select>
+        <div class="main-two">
+            <form id="myForm">
+                <div class="box1" style="display: inline-block;">
+                    <label for="problemBar">
+                        <h2>Problem</h2>
+                    </label>
+                    <input type="text" id="problemBar" placeholder="TYPE HERE......">
+                </div>
+
+                <div class="box2" style="display: inline-block;">
+                    <label for="categoryBar">
+                        <h2>select Category</h2>
+                    </label>
+                    <select name="categoryBar" id="categoryBar">
+                        <option value="simplify">Simplify</option>
+                        <option value="factor">Factor</option>
+                        <option value="derive">Derive</option>
+                        <option value="integrate">Integrate</option>
+                        <option value="zeroes">Find 0's</option>
+                        <option value="tangent">Find Tangent</option>
+                        <option value="area">Area Under Curve</option>
+                        <option value="cos">Cosine</option>
+                        <option value="sin">Sine</option>
+                        <option value="tan">Tangent</option>
+                        <option value="arccos">Inverse Cosine</option>
+                        <option value="arcsin">Inverse Sine</option>
+                        <option value="arctan">Inverse Tangent</option>
+                        <option value="abs">Absolute Value</option>
+                        <option value="log">Logarithm</option>
+                    </select>
+                </div>
+                <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass fa-3x"></i></button>
+            </form>
         </div>
-
-        <div class="box3">
-            <button type="submit" id="searchBtn" onclick="SearchButton()"><i
-                    class="fa-solid fa-magnifying-glass fa-3x"></i></button>
+    </div>
+    <div class="solContainer hidden">
+        <div class="sol-Window">
+            <h1>Saved Solution</h1>
+            <button id="problemBtn">Back to Problem Search</button>
         </div>
-
-    </div>
-
-    <div class="resultCon">
-
-    </div>
-
-    <div class="historycon">
 
     </div>
 </body>
