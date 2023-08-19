@@ -1,4 +1,4 @@
-let   inputArea = document.getElementById("problemBar");
+let inputArea = document.getElementById("problemBar");
 const operation = document.getElementById("categoryBar");
 const searchBtn = document.getElementById("searchBtn");
 const savedSol = document.getElementById("savedBtn");
@@ -33,7 +33,7 @@ function encodeInput() {
   if (inputArea.value === "") {
     console.log("empty string");
   } else {
-  
+
     let expression = encodeURIComponent(inputArea.value);
     console.log(expression);
     getData(expression, operation.value);
@@ -47,7 +47,7 @@ async function getData(exp, op) {
   const data = await resp.json();
   console.log(data);
   //const main = document.querySelector(".main");
- // main.innerHTML 
+  // main.innerHTML 
   const htmlCOntent = `
     <div class="main-three">
       <div class="problem">
@@ -60,7 +60,7 @@ async function getData(exp, op) {
         <button id="deleteBtn"><i class="fa-solid fa-trash-can fa-3x"></i></button>
       </div> 
   `;
-  
+
   //console.log(main_three);
   // main_three.innerHTML
   main.innerHTML += htmlCOntent;
@@ -90,21 +90,22 @@ function DeleteResultWindow() {
     const main_three = document.querySelector(".main-three");
     if (main_three) {
       main.removeChild(main_three);
-    } 
+    }
   });
 }
 
-// document.addEventListener("click", function (event) {
-//   if (event.target.matches("#savedSol")) {
-//     savedSolution();
-//   }
-// });
+document.addEventListener("click", function (event) {
+  if (event.target.matches("#savedBtn")) {
+    savedSolution();
+    savedSol.setAttribute("disabled", true);
+  }
+});
 
-savedSol.addEventListener("click",(e)=>{
-  e.preventDefault();
-  savedSolution();
-  savedSol.setAttribute("disabled",true);
-})
+// savedSol.addEventListener("click",(e)=>{
+//   e.preventDefault();
+//   savedSolution();
+//   savedSol.setAttribute("disabled",true);
+// })
 
 document.addEventListener("click", function (event) {
   if (event.target.matches("#deleteCard")) {
@@ -151,3 +152,10 @@ function savedSolution() {
     solContainer.appendChild(cardContainer);
   }
 }
+
+const deleteCardAll = document.querySelectorAll("#deleteCard");
+deleteCardAll.forEach((e) => {
+  e.onclick = (evt) => {
+    cardDelete(evt.target.getAttribute("value"));
+  }
+})
