@@ -132,3 +132,11 @@
     background-color: #c0bebe;
     color: white;
   }
+
+  .heart-red {
+    color: red;
+  }
+  
+  .hidden {
+    display: none;
+  }
