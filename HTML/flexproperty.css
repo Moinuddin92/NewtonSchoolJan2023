@@ -1,0 +1,17 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+    justify-content: space-evenly;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: aqua;
+    
+}
